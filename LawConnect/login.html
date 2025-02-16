@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - LawConnect</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        /* Basic Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* Background Color */
+        body {
+            background-color: #f4f7fc;
+            font-family: Arial, sans-serif;
+        }
+
+        /* Card Styling */
+        .card {
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            background-color: #ffffff;
+            border: none;
+            padding: 20px;
+        }
+
+        .card h2 {
+            color: #2c3e50;
+            font-weight: bold;
+            margin-bottom: 30px;
+        }
+
+        .form-label {
+            font-weight: 600;
+            color: #34495e;
+        }
+
+        /* Input Fields */
+        .form-control,
+        .form-select {
+            border-radius: 8px;
+            border: 1px solid #ccc;
+            margin-bottom: 20px;
+            padding: 12px;
+        }
+
+        .form-control:focus,
+        .form-select:focus {
+            border-color: #2980b9;
+            box-shadow: 0 0 5px rgba(41, 128, 185, 0.5);
+        }
+
+        /* Button Styling */
+        .btn-primary {
+            background-color: #2980b9;
+            border: none;
+            border-radius: 8px;
+            padding: 12px;
+            font-size: 16px;
+        }
+
+        .btn-primary:hover {
+            background-color: #3498db;
+            cursor: pointer;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 576px) {
+            .card {
+                width: 90%;
+            }
+        }
+    </style>
+</head>
+
+<body class="d-flex justify-content-center align-items-center vh-100">
+
+    
+
+    <div class="card p-4" style="width: 400px;">
+        <h2 class="text-center">Login</h2>
+
+        <form onsubmit="return handleLogin(event)">
+            <div class="mb-3">
+                <label class="form-label">Username:</label>
+                <input type="text" class="form-control" id="username" placeholder="Enter username" required>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">Password:</label>
+                <input type="password" class="form-control" id="password" placeholder="Enter password" required>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">Role:</label>
+                <select class="form-select" id="role" required>
+                    <option value="Criminal">Criminal</option>
+                    <option value="Lawyer">Lawyer</option>
+                    <option value="Guardian">Guardian</option>
+                </select>
+            </div>
+
+            <button type="submit" class="btn btn-primary w-100">Login</button>
+        </form>
+
+    </div>
+
+    <script src="script.js"></script>
+
+</body>
+
+</html>

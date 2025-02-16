@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lawyers Dashboard</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+
+<body class="d-flex justify-content-center align-items-center vh-100">
+
+    <div class="card p-4" style="width: 500px;" id="criminal-card">
+        <h2 class="text-center">Lawyer Dashboard</h2>
+
+        <ul class="list-unstyled" id="lawyer-list">
+            <li id="lawyer-c">
+                <p><strong>Name:</strong> Criminal C</p>
+                <p><strong>Crime:</strong> Fraud</p>
+                <p><strong>Contact:</strong> 333-333-3333</p>
+                <button class="btn btn-primary w-100 mb-3" onclick="requestLawyer('Lawyer C', 'accept')">Accept</button>
+                <button class="btn btn-danger w-100" onclick="requestLawyer('Lawyer C', 'reject')">Reject</button>
+            </li>
+
+            <li id="lawyer-d">
+                <p><strong>Name:</strong> Criminal D</p>
+                <p><strong>Crime:</strong> Murder</p>
+                <p><strong>Contact:</strong> 444-444-4444</p>
+                <button class="btn btn-primary w-100 mb-3" onclick="requestLawyer('Lawyer D', 'accept')">Accept</button>
+                <button class="btn btn-danger w-100" onclick="requestLawyer('Lawyer D', 'reject')">Reject</button>
+            </li>
+        </ul>
+    </div>
+
+    <!-- New Card Appears Here After Request -->
+    <div id="new-card" style="display: none;" class="card p-4" style="width: 500px;">
+        <h2 class="text-center">Lawyer Request Processed</h2>
+        <p>The request has been processed.</p>
+        <a href="criminal.html" class="btn btn-secondary w-100">Back to Dashboard</a>
+    </div>
+
+    <script>
+        // Function to handle accept or reject actions
+        function requestLawyer(lawyerName, action) {
+            // Determine the message and the action
+            if (action === 'accept') {
+                alert("Request accepted for " + lawyerName + ".");
+            } else if (action === 'reject') {
+                alert("Request rejected for " + lawyerName + ".");
+            }
+
+            // Remove the lawyer from the list
+            document.getElementById('lawyer-list').innerHTML = ''; // Clear the list of lawyers
+
+            // Display the new card after the request is processed
+            document.getElementById('new-card').style.display = 'block'; // Show new card
+            document.getElementById('criminal-card').style.display = 'none'; // Hide old criminal card
+        }
+    </script>
+
+</body>
+
+</html>
