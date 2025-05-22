@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lawyer Dashboard - LawConnect</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #f8f9fa;
+        }
+        .dashboard-container {
+            max-width: 900px;
+            margin: 50px auto;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+        .navbar-brand img {
+            height: 40px;
+            margin-right: 10px;
+            background-color: #ffc107;
+            padding: 5px;
+            border-radius: 5px;
+        }
+        .btn-custom {
+            background-color: #ffc107;
+            color: #212529;
+            border: none;
+            padding: 10px 20px;
+            font-size: 16px;
+            font-weight: bold;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+        }
+        .btn-custom:hover {
+            background-color: #e0a800;
+        }
+        .card {
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-warning">
+        <div class="container">
+            <a class="navbar-brand" href="HomePage.html">
+                <img src="https://png.pngtree.com/png-clipart/20191123/original/pngtree-justice-scales-lawyer-logo-scales-of-justice-sign-icon-court-of-png-image_5196526.jpg" alt="LawConnect Logo">
+                LawConnect
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="HomePage.html">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="PracticeAreas.html">Practice Areas</a></li>
+                    <li class="nav-item"><a class="nav-link" href="Testimonial.html">Testimonials</a></li>
+                    <li class="nav-item"><a class="nav-link" href="AboutUs2.html">About</a></li>
+                    <li class="nav-item"><a class="nav-link" href="ContactUs.html">Contact</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Dashboard Content -->
+    <div class="dashboard-container">
+        <h2 class="text-center mb-4">👋Welcome, Jane Smith</h2>
+        <p class="text-center">Today's Date: <span id="currentDate"></span></p>
+        
+        <div class="card">
+            <div class="card-header">Case Overview</div>
+            <div class="card-body">
+                <ul>
+                    <li>Ongoing Cases: 5</li>
+                    <li>Upcoming Court Dates: 3</li>
+                    <li>Recent Case Activities: 7</li>
+                </ul>
+                <a href = "ViewCasses.html" class="btn btn-custom">View All Cases</a>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-header">Client Management</div>
+            <div class="card-body">
+                <input type="text" class="form-control mb-2" placeholder="Search by name or case ID">
+                <button class="btn btn-custom">Search</button>
+                <ul>
+                    <li>John Doe - Case #12345 <a href="#" class="link-action">View</a></li>
+                    <li>Brim Stone - Case #67890 <a href="#" class="link-action">View</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-header">Task & Calendar</div>
+            <div class="card-body">
+                <p>Next Hearing: April 7, 2025</p>
+                <p>Client Meeting: April 10, 2025</p>
+                <a href = "schedule.html" class="btn btn-custom">View Full Schedule</a>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-header">Document Management</div>
+            <div class="card-body">
+                <input type="file" class="form-control mb-2">
+                <button class="btn btn-custom">Upload</button>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-header">Billing & Invoicing</div>
+            <div class="card-body">
+                <p>Billable Hours: 15</p>
+                <p>Pending Payments: $2,500</p>
+                <a href = "LawyerInvoice.html" class="btn btn-custom">Manage Invoices</a>
+            </div>
+        </div>
+
+        <div class="text-center mt-3">
+            <a href="appointment.html" class="btn btn-custom">🔐 Appointment Requests</a>
+            <a href="LawyerLogin.html" class="btn btn-custom">🚪 Logout</a>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        document.getElementById('currentDate').innerText = new Date().toLocaleDateString();
+    </script>
+</body>
+</html>

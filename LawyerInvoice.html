@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manage Invoice - Jane Smith</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #f8f9fa;
+        }
+
+        .invoice-container {
+            max-width: 900px;
+            margin: 50px auto;
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .btn-custom {
+            background-color: #ffc107;
+            color: #212529;
+            border: none;
+            padding: 10px 20px;
+            font-size: 16px;
+            font-weight: bold;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+        }
+
+        .btn-custom:hover {
+            background-color: #e0a800;
+        }
+
+        .btn-back {
+            background-color: #ffc107;
+            color: black;
+            border: none;
+            font-size: 16px;
+            font-weight: bold;
+            padding: 10px 20px;
+            border-radius: 5px;
+        }
+
+        .btn-back:hover {
+            background-color: #5a6268;
+        }
+
+        .navbar-brand img {
+            height: 40px;
+            margin-right: 10px;
+            background-color: #ffc107;
+            padding: 5px;
+            border-radius: 5px;
+        }
+
+        .edit-form {
+            display: none;
+            margin-top: 20px;
+        }
+
+        .edit-form input {
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-warning">
+        <div class="container">
+            <a class="navbar-brand" href="HomePage.html">
+                <img src="https://png.pngtree.com/png-clipart/20191123/original/pngtree-justice-scales-lawyer-logo-scales-of-justice-sign-icon-court-of-png-image_5196526.jpg" alt="LawConnect Logo">
+                LawConnect
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="HomePage.html">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="PracticeAreas.html">Practice Areas</a></li>
+                    <li class="nav-item"><a class="nav-link" href="Testimonial.html">Testimonials</a></li>
+                    <li class="nav-item"><a class="nav-link" href="AboutUs2.html">About</a></li>
+                    <li class="nav-item"><a class="nav-link" href="ContactUs.html">Contact</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Invoice Management -->
+    <div class="invoice-container">
+        <h2 class="text-center mb-4">Manage Invoice - Jane Smith</h2>
+
+        <!-- Invoice List -->
+        <div id="invoiceList" class="mb-4">
+            <h4>Invoices</h4>
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th scope="col">Invoice ID</th>
+                        <th scope="col">Client Name</th>
+                        <th scope="col">Date</th>
+                        <th scope="col">Amount</th>
+                        <th scope="col">Status</th>
+                        <th scope="col">Actions</th>
+                    </tr>
+                </thead>
+                <tbody id="invoiceTableBody">
+                    <!-- Invoice rows will be added here dynamically -->
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Edit Invoice Form (Initially Hidden) -->
+        <div id="editInvoiceForm" class="edit-form">
+            <h4>Edit Invoice</h4>
+            <form id="invoiceEditForm">
+                <div class="mb-3">
+                    <label for="editInvoiceId" class="form-label">Invoice ID</label>
+                    <input type="text" class="form-control" id="editInvoiceId" disabled>
+                </div>
+                <div class="mb-3">
+                    <label for="editClientName" class="form-label">Client Name</label>
+                    <input type="text" class="form-control" id="editClientName" required>
+                </div>
+                <div class="mb-3">
+                    <label for="editDate" class="form-label">Date</label>
+                    <input type="date" class="form-control" id="editDate" required>
+                </div>
+                <div class="mb-3">
+                    <label for="editAmount" class="form-label">Amount</label>
+                    <input type="text" class="form-control" id="editAmount" required>
+                </div>
+                <div class="mb-3">
+                    <label for="editStatus" class="form-label">Status</label>
+                    <input type="text" class="form-control" id="editStatus" required>
+                </div>
+                <button type="submit" class="btn btn-primary">Save Changes</button>
+            </form>
+        </div>
+
+        <!-- Button to go back to Dashboard -->
+        <div class="text-center mt-4">
+            <a href="LawyerDashboard.html" class="btn btn-back">Back to Dashboard</a>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Example Invoices Data for Lawyer Jane Smith
+        const invoices = [
+            { id: 'INV001', clientName: 'John Doe', date: '2025-03-01', amount: '$1500', status: 'Paid' },
+            { id: 'INV002', clientName: 'Mary Johnson', date: '2025-03-05', amount: '$2200', status: 'Pending' },
+            { id: 'INV003', clientName: 'Carlos Perez', date: '2025-03-10', amount: '$1800', status: 'Paid' },
+            { id: 'INV004', clientName: 'Emily Davis', date: '2025-03-12', amount: '$2000', status: 'Pending' }
+        ];
+
+        // Function to populate the invoice table
+        function populateInvoices() {
+            const tableBody = document.getElementById('invoiceTableBody');
+            invoices.forEach(invoice => {
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                    <td>${invoice.id}</td>
+                    <td>${invoice.clientName}</td>
+                    <td>${invoice.date}</td>
+                    <td>${invoice.amount}</td>
+                    <td>${invoice.status}</td>
+                    <td>
+                        <button class="btn btn-warning btn-sm" onclick="viewInvoice('${invoice.id}')">View</button>
+                        <button class="btn btn-primary btn-sm" onclick="editInvoice('${invoice.id}')">Edit</button>
+                    </td>
+                `;
+                tableBody.appendChild(row);
+            });
+        }
+
+        // Function to show the Edit form and populate it with invoice details
+        function editInvoice(invoiceId) {
+            const invoice = invoices.find(inv => inv.id === invoiceId);
+
+            if (invoice) {
+                document.getElementById('editInvoiceId').value = invoice.id;
+                document.getElementById('editClientName').value = invoice.clientName;
+                document.getElementById('editDate').value = invoice.date;
+                document.getElementById('editAmount').value = invoice.amount;
+                document.getElementById('editStatus').value = invoice.status;
+
+                // Show the edit form
+                document.getElementById('editInvoiceForm').style.display = 'block';
+            }
+        }
+
+        // Function to save the edited invoice
+        document.getElementById('invoiceEditForm').addEventListener('submit', function (event) {
+            event.preventDefault();
+
+            const invoiceId = document.getElementById('editInvoiceId').value;
+            const clientName = document.getElementById('editClientName').value;
+            const date = document.getElementById('editDate').value;
+            const amount = document.getElementById('editAmount').value;
+            const status = document.getElementById('editStatus').value;
+
+            // Find and update the invoice in the data array
+            const invoiceIndex = invoices.findIndex(inv => inv.id === invoiceId);
+            if (invoiceIndex !== -1) {
+                invoices[invoiceIndex] = {
+                    id: invoiceId,
+                    clientName: clientName,
+                    date: date,
+                    amount: amount,
+                    status: status
+                };
+            }
+
+            // Re-populate the invoice list and hide the edit form
+            populateInvoices();
+            document.getElementById('editInvoiceForm').style.display = 'none';
+        });
+
+        // Call the function to populate invoices when the page loads
+        document.addEventListener('DOMContentLoaded', populateInvoices);
+    </script>
+
+</body>
+
+</html>

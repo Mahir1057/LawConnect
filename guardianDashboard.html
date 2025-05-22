@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guardian Dashboard - LawConnect</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #f8f9fa;
+        }
+
+        .navbar-brand img {
+            height: 40px;
+            margin-right: 10px;
+            background-color: #ffc107;
+            padding: 5px;
+            border-radius: 5px;
+        }
+
+        .sidebar {
+            height: 100vh;
+            width: 250px;
+            position: fixed;
+            top: 0;
+            left: 0;
+            background-color: #343a40;
+            padding-top: 20px;
+            color: white;
+        }
+
+        .sidebar a {
+            color: white;
+            padding: 15px;
+            text-decoration: none;
+            font-size: 18px;
+            display: block;
+        }
+
+        .sidebar a:hover {
+            background-color: #ffc107;
+            color: #212529;
+        }
+
+        .dashboard-content {
+            margin-left: 100px;
+            margin-right: 100px;
+            padding: 30px;
+        }
+
+        .dashboard-content h1 {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .card {
+            margin-bottom: 20px;
+        }
+
+        .card-header {
+            background-color: #ffc107;
+            color: white;
+            font-weight: bold;
+        }
+
+        .btn-custom {
+            background-color: #ffc107;
+            color: #212529;
+            border: none;
+            padding: 10px 20px;
+            font-size: 16px;
+            font-weight: bold;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+        }
+
+        .btn-custom:hover {
+            background-color: #e0a800;
+        }
+
+        .case-status {
+            font-size: 1.1em;
+            font-weight: bold;
+        }
+
+        .logout-container {
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-warning">
+        <div class="container">
+            <a class="navbar-brand" href="HomePage.html">
+                <img src="https://png.pngtree.com/png-clipart/20191123/original/pngtree-justice-scales-lawyer-logo-scales-of-justice-sign-icon-court-of-png-image_5196526.jpg"
+                    alt="LawConnect Logo">
+                LawConnect
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="HomePage.html">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="PracticeAreas.html">Practice Areas</a></li>
+                    <li class="nav-item"><a class="nav-link" href="Testimonial.html">Testimonials</a></li>
+                    <li class="nav-item"><a class="nav-link" href="AboutUs2.html">About</a></li>
+                    <li class="nav-item"><a class="nav-link" href="ContactUs.html">Contact</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+
+    <!-- Dashboard Content -->
+    <div class="dashboard-content">
+        <h1>👋 Welcome, Guardian</h1>
+
+        <!-- Case Details Section -->
+        <div class="card">
+            <div class="card-header">Case Details</div>
+            <div class="card-body">
+                <p><strong>Inmate Name:</strong> John Doe</p>
+                <p><strong>Case Number:</strong> #123456789</p>
+                <p><strong>Case Type:</strong> Criminal Defense</p>
+                <p><strong>Case Status:</strong> <span class="case-status text-success">Ongoing</span></p>
+                <p><strong>Lawyer Assigned:</strong> Jane Smith</p>
+                <a href="AvailableG.html" class="btn btn-warning btn-custom">Request Appointment with Lawyer</a>
+            </div>
+        </div>
+
+        <!-- Upcoming Appointments Section -->
+        <div class="card">
+            <div class="card-header">Upcoming Appointments</div>
+            <div class="card-body">
+                <p><strong>Appointment Date:</strong> April 5, 2025</p>
+                <p><strong>Lawyer:</strong> Jane Smith</p>
+                <p><strong>Status:</strong> Confirmed</p>
+                <button class="btn btn-danger cancel-btn" data-lawyer="${lawyer.name}">Cancel Appointment</button>
+            </div>
+        </div>
+
+        <!-- Case Updates Section -->
+        <div class="card">
+            <div class="card-header">Recent Case Updates</div>
+            <div class="card-body">
+                <p><strong>March 20, 2025:</strong> Lawyer Jane Smith has reviewed all the case files and submitted an
+                    appeal request to the court.</p>
+                <p><strong>March 15, 2025:</strong> Preliminary hearing scheduled for March 25, 2025.</p>
+                <p><strong>March 10, 2025:</strong> Inmate transferred to a new detention facility for further hearings.
+                </p>
+            </div>
+        </div>
+
+        <!-- Message Section -->
+        <div class="card">
+            <div class="card-header">Messages</div>
+            <div class="card-body">
+                <p>You have no new messages at the moment.</p>
+                <button class="btn btn-info message-btn" data-lawyer="Jane Smith">Send a Message</button>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Message Modal -->
+    <div class="modal fade" id="messageModal" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Send a Message</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <textarea id="messageText" class="form-control" rows="4"
+                        placeholder="Write your message..."></textarea>
+                </div>
+                <div class="modal-footer">
+                    <button id="sendMessageBtn" class="btn btn-primary">Submit</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="logout-container">
+        <button id="logoutBtn" class="btn btn-danger">Logout</button>
+    </div>
+
+
+
+    <script>
+        document.addEventListener('click', function (event) {
+            // Handle appointment request
+            if (event.target.classList.contains('request-btn')) {
+                const lawyerName = event.target.getAttribute('data-lawyer');
+                console.log(`Appointment requested for ${lawyerName}`);
+                new bootstrap.Modal(document.getElementById('appointmentModal')).show();
+            }
+
+            // Handle appointment cancellation
+            if (event.target.classList.contains('cancel-btn')) {
+                const card = event.target.closest('.card');
+                if (card) {
+                    card.remove(); // Remove the card from the UI
+                    alert("Appointment Canceled");
+                }
+            }
+        });
+
+        let selectedLawyer = "";
+
+        document.addEventListener('click', function (event) {
+            // Handle Send Message button click
+            if (event.target.classList.contains('message-btn')) {
+                selectedLawyer = event.target.getAttribute('data-lawyer');
+                new bootstrap.Modal(document.getElementById('messageModal')).show();
+            }
+
+            // Handle message submission
+            if (event.target.id === 'sendMessageBtn') {
+                const message = document.getElementById('messageText').value.trim();
+                if (message) {
+                    alert(`Message sent to ${selectedLawyer}: ${message}`);
+                    document.getElementById('messageText').value = ""; // Clear input field
+                    bootstrap.Modal.getInstance(document.getElementById('messageModal')).hide();
+                } else {
+                    alert("Please write a message before submitting.");
+                }
+            }
+        });
+
+
+        document.getElementById('logoutBtn').addEventListener('click', function () {
+            if (confirm("Are you sure you want to log out?")) {
+                window.location.href = "GuardianLogin.html"; // Redirect to login page
+            }
+        });
+    </script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+
+</html>

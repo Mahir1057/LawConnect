@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jane Smith's Schedule - LawConnect</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #f8f9fa;
+        }
+        .container {
+            margin-top: 30px;
+        }
+        .navbar-brand img {
+            height: 40px;
+            margin-right: 10px;
+            background-color: #ffc107;
+            padding: 5px;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-warning">
+        <div class="container">
+            <a class="navbar-brand" href="HomePage.html">
+                <img src="https://png.pngtree.com/png-clipart/20191123/original/pngtree-justice-scales-lawyer-logo-scales-of-justice-sign-icon-court-of-png-image_5196526.jpg" alt="LawConnect Logo">
+                LawConnect
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="HomePage.html">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="PracticeAreas.html">Practice Areas</a></li>
+                    <li class="nav-item"><a class="nav-link" href="Testimonial.html">Testimonials</a></li>
+                    <li class="nav-item"><a class="nav-link" href="AboutUs2.html">About</a></li>
+                    <li class="nav-item"><a class="nav-link" href="ContactUs.html">Contact</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <div class="container">
+        <h2 class="text-center mt-4">Jane Smith's Schedule</h2>
+        <table class="table table-striped mt-4">
+            <thead class="table-warning">
+                <tr>
+                    <th>Date</th>
+                    <th>Time</th>
+                    <th>Client</th>
+                    <th>Case Type</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody id="schedule-list"></tbody>
+        </table>
+    </div>
+
+    <!-- Schedule Details Modal -->
+    <div class="modal fade" id="scheduleModal" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Appointment Details</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body" id="schedule-details"></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="text-center mt-3">
+        <button class="btn btn-warning" onclick="goToDashboard()">Back to Dashboard</button>
+    </div>
+
+    <script>
+        const schedule = [
+            { date: "March 28, 2025", time: "10:00 AM", client: "James Smith", caseType: "Theft", details: "Court hearing at NY State Court." },
+            { date: "March 29, 2025", time: "1:30 PM", client: "Michael Brown", caseType: "Assault", details: "Client meeting to discuss defense strategy." },
+            { date: "March 30, 2025", time: "3:00 PM", client: "David Johnson", caseType: "Fraud", details: "Witness preparation session." }
+        ];
+
+        // Populate table with schedule data
+        const scheduleList = document.getElementById('schedule-list');
+        schedule.forEach((appointment, index) => {
+            const row = document.createElement('tr');
+            row.innerHTML = `
+                <td>${appointment.date}</td>
+                <td>${appointment.time}</td>
+                <td>${appointment.client}</td>
+                <td>${appointment.caseType}</td>
+                <td><button class="btn btn-warning btn-sm view-btn" data-index="${index}">View Details</button></td>
+            `;
+            scheduleList.appendChild(row);
+        });
+
+        // Handle "View Details" button click
+        document.addEventListener('click', function(event) {
+            if (event.target.classList.contains('view-btn')) {
+                const index = event.target.getAttribute('data-index');
+                const appointment = schedule[index];
+                document.getElementById('schedule-details').innerHTML = `
+                    <p><strong>Date:</strong> ${appointment.date}</p>
+                    <p><strong>Time:</strong> ${appointment.time}</p>
+                    <p><strong>Client:</strong> ${appointment.client}</p>
+                    <p><strong>Case Type:</strong> ${appointment.caseType}</p>
+                    <p><strong>Details:</strong> ${appointment.details}</p>
+                `;
+                new bootstrap.Modal(document.getElementById('scheduleModal')).show();
+            }
+        });
+
+        // Redirect to Lawyer Dashboard
+        function goToDashboard() {
+            window.location.href = "LawyerDashboard.html";
+        }
+    </script>
+    
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

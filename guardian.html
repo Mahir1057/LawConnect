@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guardian Dashboard</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+
+<body class="d-flex justify-content-center align-items-center vh-100">
+
+    <div class="card p-4" style="width: 500px;">
+        <h2 class="text-center">Guardian Dashboard</h2>
+        <p><strong>Name:</strong> Emily Smith</p>
+        <p><strong>Relation:</strong> Mother</p>
+        <p><strong>Contact:</strong> 987-654-3210</p>
+        <p><strong>Criminal Name:</strong> Jane Smith</p>
+        
+        <button class="btn btn-primary" onclick="redirectToAvailable()">Request Lawyer</button>
+    </div>
+
+    <script>
+        function redirectToAvailable() {
+            window.location.href = "Available.html";
+        }
+    </script>
+
+</body>
+</html>
