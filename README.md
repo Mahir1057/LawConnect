@@ -85,10 +85,3 @@ Contributions are welcome! Please follow the standard GitHub workflow:
 4. Push to the branch (`git push origin feature/YourFeature`)
 5. Open a Pull Request
 
-## 📄 License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
----
-
-Let me know if you want a version that includes deployment instructions (e.g., GitHub Pages) or environment setup details.
